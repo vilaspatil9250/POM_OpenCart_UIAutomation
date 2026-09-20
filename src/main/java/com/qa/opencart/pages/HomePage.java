@@ -26,7 +26,7 @@ public class HomePage {
 	private By registerLink = By.linkText("Register");
 	private By productHeading = By.xpath("//h3[text()='Featured']");
 	private By procuctList = By.xpath("//div[@class='row']//h4");
-	private By FooterList = By.cssSelector("footer a");
+
 	
 	//constructor
 	public HomePage(WebDriver driver) {
