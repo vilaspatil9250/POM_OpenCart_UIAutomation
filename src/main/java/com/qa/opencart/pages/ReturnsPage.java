@@ -1,3 +1,13 @@
+package com.qa.opencart.pages;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+
+import com.qa.opencart.constants.AppConstants;
+import com.qa.opencart.utils.ElementUtil;
+
 public class ReturnsPage {
 	
 	private WebDriver driver;
