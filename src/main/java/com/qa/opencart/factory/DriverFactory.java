@@ -74,6 +74,7 @@ public class DriverFactory {
 
 				ip = new FileInputStream("./src/test/resources/config/config.qa.properties");
 			} else {
+				log.info("Environment selected for execution : "+envName);
 				switch (envName.trim().toLowerCase()) {
 				case "dev":
 					ip = new FileInputStream("./src/test/resources/config/config.dev.properties");
