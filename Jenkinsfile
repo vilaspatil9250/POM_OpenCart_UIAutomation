@@ -98,7 +98,7 @@ pipeline
         stage('Sanity Automation Test') {
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                    git 'https://github.com/naveenanimation20/March2025POMDesign.git'
+                    git 'https://github.com/vilaspatil9250/POM_OpenCart_UIAutomation.git'
                     bat "mvn clean test -Dsurefire.suiteXmlFiles=src/test/resources/testrunners/testng_sanity.xml -Denv=uat"
                     
                 }
@@ -130,7 +130,7 @@ pipeline
         stage('Sanity Automation Test on PROD env') {
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                    git 'https://github.com/naveenanimation20/March2025POMDesign.git'
+                    git 'https://github.com/vilaspatil9250/POM_OpenCart_UIAutomation.git'
                     bat "mvn clean test -Dsurefire.suiteXmlFiles=src/test/resources/testrunners/testng_sanity.xml -Denv=prod"
                     
                 }
