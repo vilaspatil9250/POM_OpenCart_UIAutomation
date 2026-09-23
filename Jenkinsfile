@@ -32,7 +32,7 @@ pipeline
             }
         }    
         
-       stage('Publish Allure Reports') {
+       stage('Publish Allure Reports - Dev env') {
            steps {
                 script {
                     allure([
@@ -62,7 +62,7 @@ pipeline
             }
         }
             
-       stage('Publish Allure Reports') {
+       stage('Publish Allure Reports - QA env') {
            steps {
                 script {
                     allure([
@@ -137,7 +137,7 @@ pipeline
             }
         }
         
-       stage('Publish Allure Reports') {
+       stage('Publish Allure Reports - PROD env') {
            steps {
                 script {
                     allure([
