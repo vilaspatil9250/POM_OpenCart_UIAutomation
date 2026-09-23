@@ -8,48 +8,61 @@ pipeline
 
     stages 
     {
-        stage('Build') 
+      stage('Build') 
         {
             steps
             {
-                 git 'https://github.com/jglick/simple-maven-project-with-tests.git'
-                 sh "mvn -Dmaven.test.failure.ignore=true clean package"
+                  echo("Build is successful")
             }
-            post 
-            {
-                success
-                {
-                    junit '**/target/surefire-reports/TEST-*.xml'
-                    archiveArtifacts 'target/*.jar'
+        }
+        
+      stage("Deploy to Dev env"){
+            steps{
+                echo("deploy to Dev env done")
+            }
+        }
+        
+        stage('Unit Automation Tests') {
+            steps {
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                    git 'https://github.com/vilaspatil9250/POM_OpenCart_UIAutomation.git'
+                    sh "mvn clean test -Dsurefire.suiteXmlFiles=src/test/resources/testrunners/testng_signletc.xml -Denv=dev"
+                    
+                }
+            }
+        }    
+        
+       stage('Publish Allure Reports') {
+           steps {
+                script {
+                    allure([
+                        includeProperties: false,
+                        jdk: '',
+                        properties: [],
+                        reportBuildPolicy: 'ALWAYS',
+                        results: [[path: '/allure-results']]
+                    ])
                 }
             }
         }
-        
-        
-        
-        stage("Deploy to QA"){
+           
+        stage("Deploy to QA env"){
             steps{
-                echo("deploy to qa done")
+                echo("deploy to QA env done")
             }
         }
-        
-        
-        
-                
+                    
         stage('Regression Automation Tests') {
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                    git 'https://github.com/naveenanimation20/March2025POMDesign.git'
+                    git 'https://github.com/vilaspatil9250/POM_OpenCart_UIAutomation.git'
                     sh "mvn clean test -Dsurefire.suiteXmlFiles=src/test/resources/testrunners/testng_regression.xml -Denv=qa"
                     
                 }
             }
         }
             
-
-                
-     
-        stage('Publish Allure Reports') {
+       stage('Publish Allure Reports') {
            steps {
                 script {
                     allure([
@@ -76,9 +89,9 @@ pipeline
             }
         }
         
-        stage("Deploy to Stage"){
+        stage("Deploy to UAT env"){
             steps{
-                echo("deploy to Stage")
+                echo("deploy to UAT env")
             }
         }
         
@@ -86,7 +99,7 @@ pipeline
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                     git 'https://github.com/naveenanimation20/March2025POMDesign.git'
-                    sh "mvn clean test -Dsurefire.suiteXmlFiles=src/test/resources/testrunners/testng_sanity.xml -Denv=stage"
+                    sh "mvn clean test -Dsurefire.suiteXmlFiles=src/test/resources/testrunners/testng_sanity.xml -Denv=uat"
                     
                 }
             }
@@ -107,19 +120,33 @@ pipeline
         }
         
         
-        stage("Deploy to PROD"){
+        stage("Deploy to PROD env"){
             steps{
-                echo("deploy to PROD")
+                echo("deploy to PROD env")
             }
         }
 
 
-        stage('Sanity Automation Test on PROD') {
+        stage('Sanity Automation Test on PROD env') {
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                     git 'https://github.com/naveenanimation20/March2025POMDesign.git'
                     sh "mvn clean test -Dsurefire.suiteXmlFiles=src/test/resources/testrunners/testng_sanity.xml -Denv=prod"
                     
+                }
+            }
+        }
+        
+       stage('Publish Allure Reports') {
+           steps {
+                script {
+                    allure([
+                        includeProperties: false,
+                        jdk: '',
+                        properties: [],
+                        reportBuildPolicy: 'ALWAYS',
+                        results: [[path: '/allure-results']]
+                    ])
                 }
             }
         }
