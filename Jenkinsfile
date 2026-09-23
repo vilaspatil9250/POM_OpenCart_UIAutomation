@@ -26,7 +26,7 @@ pipeline
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                     git 'https://github.com/vilaspatil9250/POM_OpenCart_UIAutomation.git'
-                    bat "mvn clean test -Dsurefire.suiteXmlFiles=src/test/resources/testrunners/testng_signletc.xml -Denv=dev"
+                    bat "mvn clean test -Dsurefire.suiteXmlFiles=src/test/resources/testrunners/testng_singletc.xml -Denv=dev"
                     
                 }
             }
