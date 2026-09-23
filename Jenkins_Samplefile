@@ -1,0 +1,93 @@
+pipeline{
+    
+    agent any
+    
+    stages{
+        
+        stage("build"){
+            steps{
+                echo("build the project")
+            }
+        }
+        
+        
+        stage("Run Unit test"){
+            steps{
+                echo("run UTs")
+            }
+        }
+        
+        stage("Run Integration test"){
+            steps{
+                echo("run ITs")
+            }
+        }
+        
+        stage("Deploy to dev"){
+            steps{
+                echo("deploy to dev")
+            }
+        }
+        
+             stage("Unit Testing on Dev env"){
+            steps{
+                echo("Run test cases on Dev env")
+            }
+        }
+        
+        stage("Deploy to QA"){
+            steps{
+                echo("deploy to QA")
+            }
+        }
+        
+        
+        
+        stage("Run regression test cases on QA"){
+            steps{
+                echo("Run test cases on QA")
+            }
+        }
+        
+        stage("Deploy to STAGE env"){
+            steps{
+                echo("deploy to STAGE env")
+            }
+        }
+        
+        stage("Run sanity test cases on STAGE env"){
+            steps{
+                echo("Run sanity test cases on STAGE env")
+            }
+        }
+
+        stage("Deploy to UAT env"){
+            steps{
+                echo("deploy to UAT env")
+            }
+        }
+        
+        stage("Run sanity test cases on UAT env"){
+            steps{
+                echo("Run sanity test cases on UAT env")
+            }
+        }
+        
+        stage("Deploy to PROD env"){
+            steps{
+                echo("deploy to PROD env")
+            }
+        }
+
+        stage("Run smoke test cases on PROD env"){
+            steps{
+                echo("Run smoke test cases on PROD env")
+            }
+        }
+        
+        
+        
+    }
+    
+    
+}
