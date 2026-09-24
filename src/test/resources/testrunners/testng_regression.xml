@@ -1,7 +1,6 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 
-<suite name="OpenCart app - Regression Suite" verbose="5" >
-
+<suite name="OpenCart app - Regression Suite" verbose="5"  thread-count="6" parallel="tests">
 	<listeners>
 		<listener class-name="com.qa.opencart.listeners.TestAllureListener" />
 		<listener class-name="com.aventstack.chaintest.plugins.ChainTestListener" />
@@ -23,32 +22,32 @@
 	</test>
 
 	<test name="My Account Page Test Case">
-	<parameter name="browser" value="edge" />
+	<parameter name="browser" value="chrome" />
 		<classes>
 			<class name="com.qa.opencart.tests.MyAccountTest" />
 		</classes>
 	</test>
 
-<!--	<test name="Product Info Page Test Case">
-	<parameter name="browser" value="chrome" />
+	<test name="Product Info Page Test Case">
+	<parameter name="browser" value="firefox" />
 		<classes>
 			<class name="com.qa.opencart.tests.ProductInfoPageTest" />
 		</classes>
-	</test>-->
+	</test>
 
 	<test name="Search List Page Test Case">
-	<parameter name="browser" value="firefox" />
+	<parameter name="browser" value="chrome" />
 		<classes>
 			<class name="com.qa.opencart.tests.SearchListPageTest" />
 		</classes>
 	</test>
 
-<!--	<test name="Shopping Cart Page Test Case">
-	<parameter name="browser" value="edge" />
+	<test name="Shopping Cart Page Test Case">
+	<parameter name="browser" value="firefox" />
 		<classes>
 			<class name="com.qa.opencart.tests.ShoppingCartPageTest" />
 		</classes>
-	</test>-->
+	</test>
 
 	<test name="Registration Page Test Case">
 	<parameter name="browser" value="chrome" />

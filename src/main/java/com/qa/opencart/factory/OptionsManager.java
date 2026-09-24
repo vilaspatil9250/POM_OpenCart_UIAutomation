@@ -26,6 +26,8 @@ public class OptionsManager {
 			co.addArguments("--headless");
 		}if(Boolean.parseBoolean(prop.getProperty("incognito"))){
 			co.addArguments("--incognito");
+		}if(Boolean.parseBoolean(prop.getProperty("remote"))){
+			co.setCapability("browserName", "chrome");
 		}
 		return co;
 	}
@@ -36,6 +38,8 @@ public class OptionsManager {
 			fo.addArguments("--headless");
 		} if(Boolean.parseBoolean(prop.getProperty("incognito"))) {
 			fo.addArguments("--private");
+		}if(Boolean.parseBoolean(prop.getProperty("remote"))){
+			fo.setCapability("browserName", "firefox");
 		}
 		return fo;
 	}
@@ -46,6 +50,8 @@ public class OptionsManager {
 			eo.addArguments("--headless=new");
 		} if(Boolean.parseBoolean(prop.getProperty("incognito"))) {
 			eo.addArguments("--inprivate");
+		} if(Boolean.parseBoolean(prop.getProperty("remote"))){
+			eo.setCapability("browserName", "edge");
 		}
 		return eo;
 	}
